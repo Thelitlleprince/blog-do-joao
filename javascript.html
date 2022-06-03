@@ -1,0 +1,122 @@
+<script>
+    // listas
+    let noticias = [];
+    let categorias = [];
+    // funções
+    function cadastrar_noticias(noticias_cadastradas) {
+        let titulo = prompt('Titulo da Noticia');
+        let noticia = prompt('Noticia');
+        let categoria = prompt('Categorias');
+        let noticias = {
+            titulo: titulo,
+            noticia: noticia,
+            categoria: categoria
+        };
+        noticias_cadastradas.push(noticias)
+    }
+    function cadastrar_categorias(categorias_cadastradas) {
+        let categoria = prompt('Categorias')
+        let categorias = {
+            categoria: categoria
+        };
+    }
+    function listar_noticia(noticias_cadastradas) {
+        let mensagem = '';
+        let id = 0;
+        for (let noticias of noticias_cadastradas) {
+            mensagem += id = ' ' + ':' + ' ' + noticias.titulo + ' - ' + noticias.noticia + ' - ' + noticias.categoria + '\n'
+            id++;
+        }
+        alert(mensagem)
+    }
+    function listar_categorias(categorias_cadastradas) {
+        let mensagem = '';
+        let id = 0;
+        for (let categorias of categorias_cadastradas) {
+            mensagem += id = ' ' + ':' + ' ' + categorias['categoria'] + '\n'
+            id++;
+        }
+        alert(mensagem)
+    }
+    function editar_noticia(noticias_cadastradas) {
+        listar_noticia(noticias_cadastradas)
+        let id = parseInt(prompt('ID'))
+        let variavel_id = noticias_cadastradas[id]
+        let titulo = prompt(`Titulo: [${variavel_id.titulo}]`);
+        if (titulo == '') {
+            titulo = variavel_id.titulo;
+        }
+        let noticia = prompt(`noticia: [${variavel_id.noticia}]`);
+        if (noticia == '') {
+            noticia = variavel_id.noticia;
+        }
+        let categoria = prompt(`categoria: [${variavel_id.categoria}]`);
+        if (categoria == '') {
+            categoria = variavel_id.categoria;
+        }
+        let noticiaNova = {
+            titulo: titulo,
+            noticia: noticia,
+            categoria: categoria
+        }
+        noticias_cadastradas[id] = noticiaNova
+    }
+    function editar_categoria(categorias_cadastradas) {
+        listar_categoria(categorias_cadastradas)
+        let id = parseInt(prompt('ID'))
+        let variavel_id = categorias_cadastradas[id]
+        let categoria = prompt(`categoria: [${variavel_id.categoria}]`);
+        if (categoria == '') {
+            categoria = variavel_id.categoria;
+        }
+        let categoriaNova = {
+            categoria: categoria
+        }
+        categorias_cadastradas[id] = categoriaNova;
+    }
+    function apagar_noticia(noticias_cadastradas) {
+        listar_noticia(noticias_cadastradas);
+        let id = parseInt(prompt('ID'));
+        noticias_cadastradas.splice(id, 1)
+    }
+    function apagar_categorias(categorias_cadastradas) {
+        listar_categorias(categorias_cadastradas);
+        let id = parseInt(prompt('ID'));
+        categorias_cadastradas.splice(id, 1)
+    }
+    // main
+    loop:
+    while (true) {
+        alert('1 Cadastrar Noticias\n2 Cadastrar Categoria\n3 Listar Noticias\n4 Listar Categorias\n5 Editar Noticias\n6 Editar Categorias\n7 Apagar Noticia \n8 Apagar Categorias \n9 SAIR')
+        oi = prompt('');
+        switch (oi) {
+            case '1':
+                cadastrar_noticias(noticias)
+                break
+            case '2':
+                cadastrar_categorias(categorias)
+                break
+            case '3':
+                listar_noticia(noticias)
+                break
+            case '4':
+                listar_categorias(categorias)
+                break
+            case '5':
+                editar_noticia(noticias)
+                break
+            case '6':
+                editar_categoria(categorias)
+                break
+            case '7':
+                apagar_noticia(noticias)
+                break
+            case '8':
+                apagar_categorias(categorias)
+                break
+            case '9':
+                alert('SAIR')
+                break loop;
+        }
+    }
+</script>
